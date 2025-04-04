@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Start Docker') {
-            steps {
-                sh 'echo without docker'
-            }
-        }
         stage('Build') {
             agent {
                 docker {
@@ -22,6 +17,11 @@ pipeline {
                   npm run build
                   ls -la
                 '''
+            }
+        }
+        stage('Run Unit Tests') {
+            steps {
+                sh "npm run test -- --watch=false --browsers=ChromeHeadless"
             }
         }
     }
