@@ -23,6 +23,11 @@ pipeline {
                 sh 'npm run test'
             }
         }
+        stage('Build Application') {
+            steps {
+                sh 'npm run build'
+            }
+        }
         stage('Deploy') {
             steps {
                 sh "npm i netlify-cli"
