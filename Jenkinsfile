@@ -1,27 +1,23 @@
 pipeline {
     agent any
 
+    environment {
+        NODE_VERSION = "18.16.1"  // Adjust based on your project needs
+    }
+
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                }
-            }
+        stage('Install Dependencies') {
             steps {
-                sh '''
-                  ls -la
-                  node --version
-                  npm --version
-                  npm ci
-                  npm run build
-                  ls -la
-                '''
+                script {
+                    sh "nvm install $NODE_VERSION"
+                    sh "nvm use $NODE_VERSION"
+                    sh "npm ci"  // Ensures a clean dependency install
+                }
             }
         }
         stage('Run Unit Tests') {
             steps {
-                sh "npm run test -- --watch=false --browsers=ChromeHeadless"
+                sh 'npm run test'
             }
         }
     }
