@@ -29,6 +29,7 @@ pipeline {
                 sh "node_modules/.bin/netlify --version"
                 sh "echo deploying to prod: Site ID: $NETLIFY_SITE_ID"
                 sh "node_modules/.bin/netlify status"
+                sh "node_modules/.bin/netlify deploy --dir=build --prod"
             }
         }
     }
