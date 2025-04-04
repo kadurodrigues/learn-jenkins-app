@@ -18,11 +18,11 @@ pipeline {
                 sh 'npm run test'
             }
         }
-        stage("Deploy") {
-          steps {
-            ssh "npm i netlify-cli"
-            ssh "node_modules/.bin/netlify --version"
-          }
+        stage('Deploy') {
+            steps {
+                sh "npm i netlify-cli"
+                sh "node_modules/.bin/netlify --version"
+            }
         }
     }
 }
