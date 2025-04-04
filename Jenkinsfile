@@ -5,12 +5,14 @@ pipeline {
         NODE_VERSION = "18.16.1"  // Adjust based on your project needs
     }
 
+    tools {
+        nodejs "NodeJS-${NODE_VERSION}"  // Use NodeJS installed in Jenkins
+    }
+
     stages {
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh "nvm install $NODE_VERSION"
-                    sh "nvm use $NODE_VERSION"
                     sh "npm ci"  // Ensures a clean dependency install
                 }
             }
