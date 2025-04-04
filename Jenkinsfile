@@ -1,12 +1,8 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_VERSION = "18.16.1"  // Adjust based on your project needs
-    }
-
     tools {
-        nodejs "NodeJS-${NODE_VERSION}"  // Use NodeJS installed in Jenkins
+        nodejs "NodeJS-18"  // Use NodeJS installed in Jenkins
     }
 
     stages {
